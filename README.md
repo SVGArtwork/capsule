@@ -42,6 +42,13 @@ It works best on larger screens or in landscape orientation.
 
 - SVG illustration created entirely with Inkscape.
 - JavaScript interactions developed with AI-assisted support.
+ 
+
+## License
+
+The source code is released under the MIT License.
+
+All illustrations, SVG artwork, and visual assets are © Gianluca Santoni. All rights reserved.
 
 ---
 
