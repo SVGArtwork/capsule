@@ -55,6 +55,15 @@ The source code is released under the MIT License.
 
 All illustrations, SVG artwork, and visual assets are © Gianluca Santoni. All rights reserved.
 
+## Third-Party Software
+
+This project uses the following third-party library:
+
+- svg-pan-zoom  
+  Copyright © 2009–2010 Andrea Leofreddi  
+  Licensed under the BSD-style license.
+
+
 ---
 
 © Gianluca Santoni
