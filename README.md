@@ -40,9 +40,8 @@ It works best on larger screens or in landscape orientation.
 
 ## Credits & Process
 
-SVG illustration created entirely with Inkscape.
-JavaScript interactions developed with AI-assisted support.
-
+- SVG illustration created entirely with Inkscape.
+- JavaScript interactions developed with AI-assisted support.
 
 ---
 
