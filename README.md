@@ -43,6 +43,11 @@ It works best on larger screens or in landscape orientation.
 - SVG illustration created entirely with Inkscape.
 - JavaScript interactions developed with AI-assisted support.
  
+## Contact
+
+For inquiries or collaborations:  
+- svgartwork@gmail.com
+- https://www.svgartwork.altervista.org/
 
 ## License
 
