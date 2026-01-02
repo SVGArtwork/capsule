@@ -38,6 +38,12 @@ https://svgartwork.github.io/capsule/
 Capsule is conceived as a visual-first, exploratory experience.  
 It works best on larger screens or in landscape orientation.
 
+## Credits & Process
+
+SVG illustration created entirely with Inkscape.
+JavaScript interactions developed with AI-assisted support.
+
+
 ---
 
 © Gianluca Santoni
