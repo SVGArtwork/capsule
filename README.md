@@ -8,7 +8,7 @@ Users can combine clothing items by interacting directly with the illustration a
 Capsule is not a traditional game: there is no score, no winning or losing.  
 The interaction itself — exploring combinations and visual outcomes — is the experience.
 
-[![Capsule preview](assets/Capsule_Hat.png)](https://svgartwork.github.io/capsule/)
+[![Capsule preview](assets/capsule-preview.png)](https://svgartwork.github.io/capsule/)
 
 
 ## Features
