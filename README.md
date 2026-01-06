@@ -135,4 +135,4 @@ If this work has value for others, it does not lie in its replicability, but in 
 what kind of space are we willing to offer when we ask someone for their time and attention?
 
 
-Gianluca Santoni
+© Gianluca Santoni
