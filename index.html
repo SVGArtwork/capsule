@@ -150,19 +150,21 @@ cursor: pointer;
 .info-panel {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    width: 80%;
+    transform: translateX(-50%);
     background: rgba(255,255,255,0.95);
     border-top: 1px solid #ccc;
     padding: 1rem;
     box-sizing: border-box;
     transition: transform 0.3s ease;
-	z-index: 50;
+    z-index: 50;
 }
 
 .info-panel.hidden {
-    transform: translateY(100%);
+    transform: translateX(-50%) translateY(100%);
 }
+
 
 
 @font-face {
@@ -256,7 +258,63 @@ const svgInfoMap = {
         title: 'Jeans Staight',
         text: 'Un capo essenziale della capsule wardrobe.'
     },
-    Etichetta_2: {
+	Etichetta_2: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_3: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_4: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_5: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_6: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_7: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_8: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_9: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_10: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_11: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_12: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_13: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_14: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+	Etichetta_15: {
+        title: 'Jeans Staight',
+        text: 'Un capo essenziale della capsule wardrobe.'
+    },
+    Etichetta_16: {
         title: 'Trench',
         text: 'Iconico, versatile, adatto a ogni stagione.'
     }
@@ -289,8 +347,17 @@ function showInfo(title, text) {
 document.addEventListener('DOMContentLoaded', bindSvgInfo);
 </script>
 
+<script>
+function closeInfoPanel() {
+    const infoPanel = document.getElementById('info-panel');
+    if (infoPanel) {
+        infoPanel.classList.add('hidden');
+    }
+}
+</script>
 
 <script>
+/*
 document.addEventListener('DOMContentLoaded', () => {
 
     const closeBtn = document.getElementById('close-info');
@@ -303,6 +370,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+*/
+
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('close-info');
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeInfoPanel);
+    }
+});
+
 </script>
 
 
@@ -763,6 +840,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const activateManichini = (m1, m2) => {
+  
+  
+    // 👉 chiude sempre eventuali info aperte
+    closeInfoPanel();
+  
     // Se c'è un abito attivo, resettalo prima con il parametro 'bottom'
     // Questo indica che stiamo mettendo un bottom, quindi serve la T-shirt di default
     if (window.abitoAttivo) {
@@ -1004,6 +1086,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const activateTop = (arr) => {
+  
+    // 👉 chiudi sempre eventuali info aperte
+    closeInfoPanel();
+  
+  
     // Se c'è un abito attivo, resettalo prima con il parametro 'top'
     // Questo indica che stiamo mettendo un top, quindi servono i jeans di default
     if (window.abitoAttivo) {
@@ -1269,6 +1356,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const activateCapi = (arr) => {
+  
+   // 👉 chiudi sempre il pannello info quando cambia capospalla
+   closeInfoPanel();
+  
+  
     window.hideAllCapi();
     arr.forEach(showElement);
     
@@ -1528,6 +1620,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const activateAbito = (arr, tipoAbito) => {
+  
+  // 👉 chiudi sempre il pannello info quando si attiva un abito
+  closeInfoPanel();
+  
     resetAllManichini();
     arr.forEach(showElement);
     window.abitoAttivo = tipoAbito;
@@ -1727,6 +1823,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const activateManichini = (arr) => {
+  
+  // 👉 chiudi sempre il pannello info quando cambi scarpe
+  closeInfoPanel();
+  
+  
     allManichiniScarpe.forEach(hideElement);
     arr.forEach(showElement);
   };
@@ -1849,6 +1950,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const activateManichini = (arr) => {
+  
+  // 👉 chiudi sempre il pannello info quando cambi scarpe
+  closeInfoPanel();
+  
+  
     allManichiniCappelli.forEach(hideElement);
     arr.forEach(showElement);
   };
