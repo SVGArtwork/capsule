@@ -12,15 +12,13 @@
     <meta name="theme-color" content="#2c2c2c">
     
     
-    
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js');
-            });
-        }
-    </script>
+  <script>
+	if ('serviceWorker' in navigator) {
+	  window.addEventListener('load', () => {
+		navigator.serviceWorker.register('./sw.js');
+	  });
+	}
+	</script>
 
 
 <script type="text/javascript" src="script/svg-pan-zoom.js"></script>
