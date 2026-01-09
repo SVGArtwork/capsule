@@ -121,12 +121,27 @@ cursor: pointer;
 
 /* === Layout base PWA (sostituisce Bootstrap grid) === */
 
+
+
 .pwa-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     padding: 0.75rem;
     box-sizing: border-box;
-	z-index: 100;
+    z-index: 200;
+
+    /* fondamentale */
+    pointer-events: none;
 }
+
+.pwa-btn-group,
+.pwa-btn {
+    pointer-events: auto;
+}
+
+
 
 .pwa-row {
     display: flex;
@@ -246,12 +261,13 @@ body {
         </div>
 
         <div class="pwa-col center">
-            <!-- spazio centrale (eventuale back, titolo, ecc.) -->
+            <!---spazio vuoto----per ora---->
         </div>
 
         <div class="pwa-col right pwa-btn-group">
-            <button type="button" id="zoom-in" class="pwa-btn">+</button>
-            <button type="button" id="zoom-out" class="pwa-btn">−</button>
+            <button type="button" id="zoom-in" class="pwa-btn" aria-label="Zoom +">+</button>
+			<button type="button" id="reload" class="pwa-btn" aria-label="Reset vista">↺</button>
+            <button type="button" id="zoom-out" class="pwa-btn" aria-label="Zoom -">−</button>
         </div>
 
     </div>
@@ -419,36 +435,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-      // Don't use window.onLoad like this in production, because it can only listen to one function.
-      window.onload = function() {
-        var panZoom = svgPanZoom('#svg-content', {
-          zoomEnabled: true,
-		  //panEnabled: false,
-		  //mouseWheelZoomEnabled: false,
-          controlIconsEnabled: false
-        });
+let panZoom;
 
-        document.getElementById('zoom-in').addEventListener('click', function(ev){
-          ev.preventDefault()
+document.addEventListener('DOMContentLoaded', () => {
 
-          panZoom.zoomIn()
-        });
+  panZoom = svgPanZoom('#svg-content', {
+    zoomEnabled: true,
+    controlIconsEnabled: false,
+    fit: true,
+    center: true
+  });
 
-        document.getElementById('zoom-out').addEventListener('click', function(ev){
-          ev.preventDefault()
+  // Zoom +
+  document.getElementById('zoom-in')?.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    panZoom.zoomIn();
+  });
 
-          panZoom.zoomOut()
-        });
-		/*
-        document.getElementById('reset').addEventListener('click', function(ev){
-          ev.preventDefault()
+  // Zoom −
+  document.getElementById('zoom-out')?.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    panZoom.zoomOut();
+  });
 
-          panZoom.resetZoom()
-        });
-		*/
-      };
-	  
-</script> 
+  // 👉 FIX ROTAZIONE / RESIZE
+  window.addEventListener('resize', () => {
+    if (!panZoom) return;
+
+    panZoom.resize();
+    panZoom.fit();
+    panZoom.center();
+  });
+
+});
+</script>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const reloadBtn = document.getElementById('reload');
+    if (!reloadBtn) return;
+
+    reloadBtn.addEventListener('click', () => {
+        window.location.reload();
+    });
+});
+</script>
+
 
  <script>	  
 	  
