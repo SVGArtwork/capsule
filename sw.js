@@ -1,5 +1,7 @@
 const CACHE_NAME = 'capsule-v2';
 
+
+
 const URLS_TO_CACHE = [
   './',
   './index.html',
@@ -8,12 +10,13 @@ const URLS_TO_CACHE = [
   // script
   './script/svg-pan-zoom.js',
 
-  // icone (PWA)
+  // font REALI
+  './fonts/Inter-Variable.woff2',
+
+  // icone PWA
   './icons/icon-192.png',
   './icons/icon-512.png',
-
-  // fonts (se usate direttamente)
-  './fonts/'
+  './icons/icon-512-maskable.png'
 ];
 
 // INSTALL
