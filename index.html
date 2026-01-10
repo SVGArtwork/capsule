@@ -183,6 +183,38 @@ cursor: pointer;
 }
 
 
+.pwa-slider-group {
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
+}
+
+#zoom-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 130px;
+    height: 4px;
+    background: #ccc;          /* track grigio */
+    border-radius: 2px;
+    outline: none;
+}
+
+#zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;               /* 👈 più grande */
+    height: 20px;
+    background: #999;          /* grigio scuro */
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+
+
+
+
+
 .info-panel {
     position: fixed;
     bottom: 0;
@@ -256,18 +288,18 @@ body {
 <div class="pwa-container">
     <div class="pwa-row">
 
-        <div class="pwa-col">
-            <!-- spazio riservato a controlli futuri -->
+         <div class="pwa-col left pwa-btn-group">
+            <button type="button" id="zoom-out" class="pwa-btn" aria-label="Zoom -">−</button>
         </div>
 
-        <div class="pwa-col center">
-            <!---spazio vuoto----per ora---->
+        <div class="pwa-col center pwa-btn-group">
+            <div class="pwa-col center pwa-slider-group">
+				<input type="range"	id="zoom-slider" min="0.5" max="3" step="0.01" value="1" aria-label="Zoom">
+			</div>
         </div>
 
         <div class="pwa-col right pwa-btn-group">
             <button type="button" id="zoom-in" class="pwa-btn" aria-label="Zoom +">+</button>
-			<!---button type="button" id="reload" class="pwa-btn" aria-label="Reset vista">↺</button---->
-            <button type="button" id="zoom-out" class="pwa-btn" aria-label="Zoom -">−</button>
         </div>
 
     </div>
@@ -435,54 +467,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-let panZoom;
-
 document.addEventListener('DOMContentLoaded', () => {
+    // === INIZIALIZZAZIONE PAN-ZOOM ===
+    const panZoom = svgPanZoom('#svg-content', {
+        zoomEnabled: true,
+        panEnabled: true,
+        controlIconsEnabled: false,
+        contain: true,    // impedisce di "uscire" dall'SVG
+        fit: true,        // scala per adattare
+        center: true,     // centra nella viewport
+        minZoom: 1,
+        maxZoom: 5
+    });
 
-  panZoom = svgPanZoom('#svg-content', {
-    zoomEnabled: true,
-    controlIconsEnabled: false,
-    fit: true,
-    center: true
-  });
+    // === SLIDER (se presente) ===
+    const slider = document.getElementById('zoom-slider');
+    if (slider) {
+        slider.value = panZoom.getZoom(); // inizializza
+        slider.addEventListener('input', function () {
+            panZoom.zoom(Number(this.value));
+        });
+    }
 
-  // Zoom +
-  document.getElementById('zoom-in')?.addEventListener('click', (ev) => {
-    ev.preventDefault();
-    panZoom.zoomIn();
-  });
+    // === PULSANTI ZOOM ===
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
 
-  // Zoom −
-  document.getElementById('zoom-out')?.addEventListener('click', (ev) => {
-    ev.preventDefault();
-    panZoom.zoomOut();
-  });
+    zoomInBtn?.addEventListener('click', e => {
+        e.preventDefault();
+        panZoom.zoomIn();
+        if (slider) slider.value = panZoom.getZoom();
+    });
 
-  // 👉 FIX ROTAZIONE / RESIZE
-  window.addEventListener('resize', () => {
-    if (!panZoom) return;
+    zoomOutBtn?.addEventListener('click', e => {
+        e.preventDefault();
+        panZoom.zoomOut();
+        if (slider) slider.value = panZoom.getZoom();
+    });
 
-    panZoom.resize();
-    panZoom.fit();
-    panZoom.center();
-  });
+    // === LISTENER RESIZE ===
+    const resizePanZoom = () => {
+        panZoom.resize();
+        panZoom.fit();
+        panZoom.center();
+    };
+
+    window.addEventListener('resize', resizePanZoom);
+
+    // === OPZIONALE: aggiorna slider dopo resize ===
+    window.addEventListener('resize', () => {
+        if (slider) slider.value = panZoom.getZoom();
+    });
 
 });
 </script>
-
-
-
-
-<!----script>
-document.addEventListener('DOMContentLoaded', () => {
-    const reloadBtn = document.getElementById('reload');
-    if (!reloadBtn) return;
-
-    reloadBtn.addEventListener('click', () => {
-        window.location.reload();
-    });
-});
-</script------->
 
 
  <script>	  
